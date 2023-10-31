@@ -12,10 +12,16 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
 
         public void OnGet()
         {
+
             KundeRepository repo = new KundeRepository(true);
 
             Kunder = repo.HentAlleKunder();
 
+        }
+
+        public IActionResult OnPost()
+        {
+            return RedirectToPage("NyKunde");
         }
     }
 }

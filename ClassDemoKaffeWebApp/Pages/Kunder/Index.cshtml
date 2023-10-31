@@ -2,6 +2,7 @@
 @using ClassDemoKaffeWebApp.model;
 @model ClassDemoKaffeWebApp.Pages.Kunder.IndexModel
 @{
+    ViewData["Title"] = "Kunder";
 }
 
 <h1 class="jumbotron">Vis Alle Kunder</h1>
@@ -26,7 +27,10 @@
     </tbody>
     </table>
 
-    <p>That was it</p>
+    <form method="post">
+        <input type="submit" value="Opret" />
+
+    </form>
 
 
 
