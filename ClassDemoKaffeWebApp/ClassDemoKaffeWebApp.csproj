@@ -6,12 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="Pages\Kunder\OpretNyKunde.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Kunder\OpretNyKunde.cshtml" />
-  </ItemGroup>
-
 </Project>

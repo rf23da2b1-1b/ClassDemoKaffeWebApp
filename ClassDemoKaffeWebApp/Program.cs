@@ -1,7 +1,16 @@
+using ClassDemoKaffeWebApp.services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+
+/*
+ * Indsætter een KundeRepository
+ */
+builder.Services.AddSingleton<KundeRepository>(new KundeRepository(true));
+
 
 var app = builder.Build();
 

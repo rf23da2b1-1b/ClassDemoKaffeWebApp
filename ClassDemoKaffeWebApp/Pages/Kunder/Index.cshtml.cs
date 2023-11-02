@@ -7,15 +7,28 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
 {
     public class IndexModel : PageModel
     {
+        // instans af kunde repository
+        private KundeRepository _repo;
+
+        // Dependency Injection
+        public IndexModel(KundeRepository repository)
+        {
+            _repo = repository;
+        }
+
+
+
+
+
         // property til View'et
         public List<Kunde> Kunder { get;  set; }
 
         public void OnGet()
         {
 
-            KundeRepository repo = new KundeRepository(true);
+            //KundeRepository repo = new KundeRepository(true);
 
-            Kunder = repo.HentAlleKunder();
+            Kunder = _repo.HentAlleKunder();
 
         }
 
