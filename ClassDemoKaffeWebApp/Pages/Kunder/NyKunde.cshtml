@@ -12,6 +12,8 @@
 
         <label>Kunde navn</label><br />
         <input class="form-control" asp-for="@Model.NytKundeNavn" /><br />
+        <span asp-validation-for="@Model.NytKundeNavn" class="text-danger"></span><br/>
+
 
         <label>Kunde telefon</label><br />
         <input class="form-control" asp-for="@Model.NytKundetlf" /><br />
