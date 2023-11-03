@@ -43,7 +43,7 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
         }
 
 
-        public IActionResult OnPost()
+        public IActionResult OnPostChange()
         {
             if ( !ModelState.IsValid )
             {
@@ -56,6 +56,13 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
             kunde.Tlf = NytKundetlf;
 
             return RedirectToPage("Index");
+        }
+
+
+
+        public IActionResult OnPostCancel()
+        {
+           return RedirectToPage("Index");
         }
     }
 }
