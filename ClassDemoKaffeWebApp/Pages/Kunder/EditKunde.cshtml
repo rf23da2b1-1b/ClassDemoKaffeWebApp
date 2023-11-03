@@ -1,0 +1,25 @@
+﻿@page
+@model ClassDemoKaffeWebApp.Pages.Kunder.EditKundeModel
+@{
+}
+<h1>Ændre en kunde</h1>
+
+
+<form method="post">
+    <div class="form-group>">
+        <label>Kunde nummer</label> : @Model.NytKundeNummer<br />
+        <input type="hidden" />
+        <br />
+
+        <label>Kunde navn</label><br />
+        <input class="form-control" asp-for="@Model.NytKundeNavn" /><br />
+        <span asp-validation-for="@Model.NytKundeNavn" class="text-danger"></span><br />
+
+
+        <label>Kunde telefon</label><br />
+        <input class="form-control" asp-for="@Model.NytKundetlf" /><br />
+
+
+        <input type="submit" value="Ændre Ny Kunde" class="btn btn-success" />
+    </div>
+</form>

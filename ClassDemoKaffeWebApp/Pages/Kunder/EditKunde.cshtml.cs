@@ -6,18 +6,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ClassDemoKaffeWebApp.Pages.Kunder
 {
-    public class NyKundeModel : PageModel
+    public class EditKundeModel : PageModel
     {
         private KundeRepository _repo;
 
-        public NyKundeModel(KundeRepository repo)
+        public EditKundeModel(KundeRepository repo)
         {
             _repo = repo;
         }
-
-
-
-
 
 
         [BindProperty]
@@ -35,21 +31,29 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
         public string NytKundetlf { get; set; }
 
 
-        public void OnGet()
+
+
+        public void OnGet(int nummer)
         {
-            
+            Kunde kunde = _repo.HentKunde(nummer);
+
+            NytKundeNummer = kunde.KundeNummer;
+            NytKundeNavn = kunde.Navn;
+            NytKundetlf = kunde.Tlf;
         }
+
 
         public IActionResult OnPost()
         {
-            if ( !ModelState.IsValid)
+            if ( !ModelState.IsValid )
             {
                 return Page();
             }
-            Kunde nyKunde = new Kunde(NytKundeNummer, NytKundeNavn, NytKundetlf);
 
-            //KundeRepository repo = new KundeRepository(true);
-            _repo.Tilføj(nyKunde);
+            Kunde kunde = _repo.HentKunde(NytKundeNummer);
+
+            kunde.Navn = NytKundeNavn;
+            kunde.Tlf = NytKundetlf;
 
             return RedirectToPage("Index");
         }

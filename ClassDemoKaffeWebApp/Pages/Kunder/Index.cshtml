@@ -7,6 +7,11 @@
 
 <h1 class="jumbotron">Vis Alle Kunder</h1>
 
+<form method="post">
+    Vil du oprette en ny kunde tryk på <input type="submit" value="Opret" class="btn btn-primary" />
+
+</form>
+<p></p>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -22,15 +27,13 @@
                 <td>@k.KundeNummer</td>
                 <td>@k.Navn</td>
                 <td>@k.Tlf</td>
+                <td><a asp-page="EditKunde" asp-route-nummer="@k.KundeNummer">Ændre</a></td>
             </tr>
         }
     </tbody>
     </table>
 
-    <form method="post">
-        <input type="submit" value="Opret" class="btn btn-success"/>
-
-    </form>
+    
 
 
 
