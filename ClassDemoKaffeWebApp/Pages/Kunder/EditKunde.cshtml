@@ -8,8 +8,10 @@
 <form method="post">
     <div class="form-group>">
         <label>Kunde nummer</label> : @Model.NytKundeNummer<br />
-        <input type="hidden" asp-for="@Model.NytKundeNummer" />
+        <input type="hidden" asp-for="@Model.NytKundeNummer" /><br />
+        <label class="text text-danger">@Model.ErrorMessage</label><br />
         <br />
+
 
         <label>Kunde navn</label><br />
         <input class="form-control" asp-for="@Model.NytKundeNavn" /><br />
@@ -19,8 +21,12 @@
         <label>Kunde telefon</label><br />
         <input class="form-control" asp-for="@Model.NytKundetlf" /><br />
 
-
-        <input type="submit" value="Ændre Ny Kunde" class="btn btn-success" asp-page-handler="Change" />
+        @if (Model.Error){
+            <input type="submit" value="Ændre Ny Kunde" class="btn btn-secondary" asp-page-handler="Change" disabled/>
+        }
+        else{
+            <input type="submit" value="Ændre Ny Kunde" class="btn btn-success" asp-page-handler="Change" />
+        }
         <input type="submit" value="Fortryd" class="btn btn-danger"  asp-page-handler="Cancel"/>
     </div>
 </form>

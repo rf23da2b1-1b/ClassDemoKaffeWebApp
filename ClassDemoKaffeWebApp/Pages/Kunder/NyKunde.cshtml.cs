@@ -30,9 +30,11 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
         public string NytKundeNavn { get; set; }
 
 
-
         [BindProperty]
         public string NytKundetlf { get; set; }
+
+
+        public string ErrorMessage { get; private set; }
 
 
         public void OnGet()
@@ -42,14 +44,24 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
 
         public IActionResult OnPost()
         {
+            ErrorMessage = "";
+
             if ( !ModelState.IsValid)
             {
                 return Page();
             }
             Kunde nyKunde = new Kunde(NytKundeNummer, NytKundeNavn, NytKundetlf);
 
-            //KundeRepository repo = new KundeRepository(true);
-            _repo.Tilføj(nyKunde);
+            try
+            {
+                //KundeRepository repo = new KundeRepository(true);
+                _repo.Tilføj(nyKunde);
+            }
+            catch (ArgumentException ae)
+            {
+                ErrorMessage = ae.Message;
+                return Page();
+            }
 
             return RedirectToPage("Index");
         }

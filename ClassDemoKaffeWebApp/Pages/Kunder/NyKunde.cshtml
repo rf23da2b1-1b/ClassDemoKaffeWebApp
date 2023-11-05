@@ -9,11 +9,13 @@
     <div class="form-group>">
         <label>Kunde nummer</label><br />
         <input class="form-control" asp-for="@Model.NytKundeNummer" /><br />
+        <label class="text text-danger">@Model.ErrorMessage</label><br />
+        <br />
 
         <label>Kunde navn</label><br />
         <input class="form-control" asp-for="@Model.NytKundeNavn" /><br />
         <span asp-validation-for="@Model.NytKundeNavn" class="text-danger"></span><br/>
-
+        <br />
 
         <label>Kunde telefon</label><br />
         <input class="form-control" asp-for="@Model.NytKundetlf" /><br />

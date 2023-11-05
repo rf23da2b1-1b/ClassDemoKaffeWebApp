@@ -31,15 +31,29 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
         public string NytKundetlf { get; set; }
 
 
+        public string ErrorMessage { get; private set; }
+        public bool Error { get; private set; }
+
 
 
         public void OnGet(int nummer)
         {
-            Kunde kunde = _repo.HentKunde(nummer);
+            ErrorMessage = "";
+            Error = false;
 
-            NytKundeNummer = kunde.KundeNummer;
-            NytKundeNavn = kunde.Navn;
-            NytKundetlf = kunde.Tlf;
+            try
+            {
+                Kunde kunde = _repo.HentKunde(nummer);
+
+                NytKundeNummer = kunde.KundeNummer;
+                NytKundeNavn = kunde.Navn;
+                NytKundetlf = kunde.Tlf;
+            }
+            catch (KeyNotFoundException knfe)
+            {
+                ErrorMessage = knfe.Message;
+                Error = true;
+            }
         }
 
 

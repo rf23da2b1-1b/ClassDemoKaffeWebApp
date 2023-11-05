@@ -53,7 +53,7 @@ namespace ClassDemoKaffeWebApp.services
                 return kunde;
             }
 
-            throw new ArgumentException("Kunde nummer findes i forvejen");
+            throw new ArgumentException($"KundeNummer {kunde.KundeNummer} findes i forvejen");
         }
 
         public Kunde Slet(int kundenummer)
