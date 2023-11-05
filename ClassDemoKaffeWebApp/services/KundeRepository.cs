@@ -46,41 +46,42 @@ namespace ClassDemoKaffeWebApp.services
          */
         public Kunde Tilføj(Kunde kunde)
         {
-            _katalog.Add(kunde.KundeNummer, kunde);
+            if (!_katalog.ContainsKey(kunde.KundeNummer))
+            {
+                _katalog.Add(kunde.KundeNummer, kunde);
 
-            return kunde;
+                return kunde;
+            }
+
+            throw new ArgumentException("Kunde nummer findes i forvejen");
         }
 
         public Kunde Slet(int kundenummer)
         {
-            if (_katalog.ContainsKey(kundenummer))
-            {
-                Kunde slettetKunde = _katalog[kundenummer];
-                _katalog.Remove(kundenummer);
-                return slettetKunde;
-
-            }
-            else
-            {
-                return null;
-            }
+            Kunde slettetKunde = HentKunde(kundenummer);
+            _katalog.Remove(kundenummer);
+            return slettetKunde;
         }
+
+        public Kunde Opdater(Kunde kunde)
+        {
+            Kunde editKunde = HentKunde(kunde.KundeNummer);
+            _katalog[kunde.KundeNummer] = kunde;
+            return kunde;
+        }
+
+
 
         public Kunde HentKunde(int kundenummer)
         {
             if (_katalog.ContainsKey(kundenummer))
             {
                 return _katalog[kundenummer];
-
             }
             else
             {
                 // opdaget en fejl
-                throw new KeyNotFoundException("kundenummer findes ikke");
-
-
-
-                //return null;
+                throw new KeyNotFoundException($"kundenummer {kundenummer} findes ikke");
             }
         }
 

@@ -53,5 +53,10 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
 
             return RedirectToPage("Index");
         }
+
+        public IActionResult OnPostCancel()
+        {
+            return RedirectToPage("Index");
+        }
     }
 }
