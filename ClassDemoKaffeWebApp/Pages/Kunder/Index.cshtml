@@ -19,6 +19,7 @@
             <th>Navn</th>
             <th>Telefon</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
                 <td>@k.Navn</td>
                 <td>@k.Tlf</td>
                 <td><a asp-page="EditKunde" asp-route-nummer="@k.KundeNummer">Ændre</a></td>
+                <td><a asp-page="DeleteKunde" asp-route-nummer="@k.KundeNummer">Slet</a></td>
             </tr>
         }
     </tbody>
