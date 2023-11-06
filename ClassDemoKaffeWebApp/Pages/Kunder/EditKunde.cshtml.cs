@@ -8,9 +8,9 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
 {
     public class EditKundeModel : PageModel
     {
-        private KundeRepository _repo;
+        private IKundeRepository _repo;
 
-        public EditKundeModel(KundeRepository repo)
+        public EditKundeModel(IKundeRepository repo)
         {
             _repo = repo;
         }
@@ -64,10 +64,7 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
                 return Page();
             }
 
-            Kunde kunde = _repo.HentKunde(NytKundeNummer);
-
-            kunde.Navn = NytKundeNavn;
-            kunde.Tlf = NytKundetlf;
+            Kunde kunde = _repo.Opdater(new Kunde(NytKundeNummer, NytKundeNavn, NytKundetlf));
 
             return RedirectToPage("Index");
         }

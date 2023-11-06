@@ -8,9 +8,9 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
 {
     public class NyKundeModel : PageModel
     {
-        private KundeRepository _repo;
+        private IKundeRepository _repo;
 
-        public NyKundeModel(KundeRepository repo)
+        public NyKundeModel(IKundeRepository repo)
         {
             _repo = repo;
         }

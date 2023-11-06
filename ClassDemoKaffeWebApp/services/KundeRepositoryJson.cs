@@ -1,8 +1,9 @@
 ﻿using ClassDemoKaffeWebApp.model;
+using System.Text.Json;
 
 namespace ClassDemoKaffeWebApp.services
 {
-    public class KundeRepository : IKundeRepository
+    public class KundeRepositoryJson:IKundeRepository
     {
         // instans felt
         Dictionary<int, Kunde> _katalog;
@@ -15,31 +16,12 @@ namespace ClassDemoKaffeWebApp.services
         }
 
         // konstruktør
-        public KundeRepository(bool mockData = false)
+        public KundeRepositoryJson()
         {
-            _katalog = new Dictionary<int, Kunde>();
-
-
-            if (mockData)
-            {
-                PopulateKundeRepository();
-            }
+            _katalog = ReadFromJson();
         }
 
-        private void PopulateKundeRepository()
-        {
-            _katalog.Clear();
-
-            _katalog.Add(1, new Kunde(1, "peter", "33445566"));
-            _katalog.Add(2, new Kunde(2, "vibeke", "99887766"));
-            _katalog.Add(3, new Kunde(3, "anders", "44332211"));
-            _katalog.Add(4, new Kunde(4, "henrik", "55446677"));
-            _katalog.Add(5, new Kunde(5, "jakob", "88775533"));
-        }
-
-
-
-
+        
 
         /*
          * metoder
@@ -50,6 +32,8 @@ namespace ClassDemoKaffeWebApp.services
             {
                 _katalog.Add(kunde.KundeNummer, kunde);
 
+
+                WriteToJson();
                 return kunde;
             }
 
@@ -60,6 +44,8 @@ namespace ClassDemoKaffeWebApp.services
         {
             Kunde slettetKunde = HentKunde(kundenummer);
             _katalog.Remove(kundenummer);
+
+            WriteToJson();
             return slettetKunde;
         }
 
@@ -67,6 +53,9 @@ namespace ClassDemoKaffeWebApp.services
         {
             Kunde editKunde = HentKunde(kunde.KundeNummer);
             _katalog[kunde.KundeNummer] = kunde;
+
+
+            WriteToJson();
             return kunde;
         }
 
@@ -111,6 +100,38 @@ namespace ClassDemoKaffeWebApp.services
 
             return $"{{{nameof(Katalog)}={pænTekst}}}";
         }
+
+
+        /*
+         * Hjælpe metoder til at læse og skrive til en fil i json format
+         */
+
+        private const string FILENAME = "KundeRepository.json";
+
+        private Dictionary<int, Kunde> ReadFromJson()
+        {
+            if ( File.Exists(FILENAME) )
+            {
+                StreamReader reader = File.OpenText(FILENAME);
+                Dictionary<int, Kunde> katalog = JsonSerializer.Deserialize<Dictionary<int, Kunde>>(reader.ReadToEnd());
+                reader.Close();
+                return katalog;
+            }
+            else
+            {
+                return new Dictionary<int, Kunde>();
+            }
+            
+        }
+
+        private void WriteToJson()
+        {
+            FileStream fs = new FileStream(FILENAME, FileMode.Create);
+            Utf8JsonWriter writer = new Utf8JsonWriter(fs);
+            JsonSerializer.Serialize(writer, _katalog);
+            fs.Close();
+        }
+
 
 
     }

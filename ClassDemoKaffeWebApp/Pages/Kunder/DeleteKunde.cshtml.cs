@@ -7,9 +7,9 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
 {
     public class DeleteKundeModel : PageModel
     {
-        private KundeRepository _repo;
+        private IKundeRepository _repo;
 
-        public DeleteKundeModel(KundeRepository repo)
+        public DeleteKundeModel(IKundeRepository repo)
         {
             _repo = repo;
         }

@@ -9,7 +9,7 @@ builder.Services.AddRazorPages();
 /*
  * Indsætter een KundeRepository
  */
-builder.Services.AddSingleton<KundeRepository>(new KundeRepository(true));
+builder.Services.AddSingleton<IKundeRepository>(new KundeRepositoryJson());
 
 
 var app = builder.Build();
