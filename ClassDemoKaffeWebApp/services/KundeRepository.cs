@@ -30,11 +30,11 @@ namespace ClassDemoKaffeWebApp.services
         {
             _katalog.Clear();
 
-            _katalog.Add(1, new Kunde(1, "peter", "33445566"));
-            _katalog.Add(2, new Kunde(2, "vibeke", "99887766"));
-            _katalog.Add(3, new Kunde(3, "anders", "44332211"));
-            _katalog.Add(4, new Kunde(4, "henrik", "55446677"));
-            _katalog.Add(5, new Kunde(5, "jakob", "88775533"));
+            _katalog.Add(1, new Kunde(1, "peter", "33445566",true, 3.6));
+            _katalog.Add(2, new Kunde(2, "vibeke", "99887766", true, 4.3));
+            _katalog.Add(3, new Kunde(3, "anders", "44332211", false, 5.8));
+            _katalog.Add(4, new Kunde(4, "henrik", "55446677", true, 2.1));
+            _katalog.Add(5, new Kunde(5, "jakob", "88775533", false, 7.2));
         }
 
 
@@ -112,6 +112,14 @@ namespace ClassDemoKaffeWebApp.services
             return $"{{{nameof(Katalog)}={pænTekst}}}";
         }
 
+        public List<Kunde> Search(int? number, string? name, string? phone)
+        {
+            throw new NotImplementedException();
+        }
 
+        public List<Kunde> Search(int number, string name, string phone)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -12,5 +12,8 @@ namespace ClassDemoKaffeWebApp.services
         Kunde Opdater(Kunde kunde);
         Kunde Slet(int kundenummer);
         Kunde Tilføj(Kunde kunde);
+
+
+        List<Kunde> Search(int? number, string? name, string? phone);
     }
 }

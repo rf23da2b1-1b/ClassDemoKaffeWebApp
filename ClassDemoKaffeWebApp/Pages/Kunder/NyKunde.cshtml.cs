@@ -33,6 +33,12 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
         [BindProperty]
         public string NytKundetlf { get; set; }
 
+        [BindProperty]
+        public bool NytErFirma { get; set; }
+
+        [BindProperty]
+        public double NytRanking { get; set; }
+
 
         public string ErrorMessage { get; private set; }
 
@@ -50,7 +56,7 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
             {
                 return Page();
             }
-            Kunde nyKunde = new Kunde(NytKundeNummer, NytKundeNavn, NytKundetlf);
+            Kunde nyKunde = new Kunde(NytKundeNummer, NytKundeNavn, NytKundetlf,NytErFirma, NytRanking);
 
             try
             {

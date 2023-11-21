@@ -20,6 +20,13 @@
         <label>Kunde telefon</label><br />
         <input class="form-control" asp-for="@Model.NytKundetlf" /><br />
 
+        <label>Kunde er Firma</label><br />
+        <input Type="checkbox"  asp-for="@Model.NytErFirma" /> Er Firma<br />
+
+
+        <label>Kunde Ranking</label><br />
+        <input class="form-control" asp-for="@Model.NytRanking" /><br />
+
 
         <input type="submit" value="Opret Ny Kunde" class="btn btn-success"/>
         <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />

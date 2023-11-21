@@ -21,6 +21,16 @@
         <label>Kunde telefon</label><br />
         <input class="form-control" asp-for="@Model.NytKundetlf" /><br />
 
+        <label>Kunde er Firma</label><br />
+        <input Type="checkbox" asp-for="@Model.NytErFirma" />Er Firma<br />
+
+
+        <label>Kunde Ranking</label><br />
+        <input class="form-control" asp-for="@Model.NytRanking" /><br />
+
+
+
+
         @if (Model.Error){
             <input type="submit" value="Ændre Ny Kunde" class="btn btn-secondary" asp-page-handler="Change" disabled/>
         }

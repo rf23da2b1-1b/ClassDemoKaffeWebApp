@@ -94,6 +94,31 @@ namespace ClassDemoKaffeWebApp.services
             return resKunde;
         }
 
+        public List<Kunde> Search(int? number, string? name, string? phone)
+        {
+            List<Kunde> retKunder = new List<Kunde>(HentAlleKunder());
+
+            if (number is not null)
+            {
+                retKunder = retKunder.FindAll(k => k.KundeNummer == number);
+            }
+
+            if (name is not null)
+            {
+                retKunder = retKunder.FindAll(k => k.Navn.Contains(name));
+            }
+
+
+            if (phone is not null)
+            {
+                retKunder = retKunder.FindAll(k => k.Tlf.Contains(phone));
+            }
+
+            return retKunder;
+        }
+
+
+
         public override string ToString()
         {
             String pænTekst = String.Join(", ", _katalog.Values);
@@ -132,7 +157,6 @@ namespace ClassDemoKaffeWebApp.services
             fs.Close();
         }
 
-
-
+       
     }
 }

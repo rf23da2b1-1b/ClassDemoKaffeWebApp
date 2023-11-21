@@ -17,11 +17,16 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
         }
 
 
-
-
-
         // property til View'et
         public List<Kunde> Kunder { get;  set; }
+
+        [BindProperty]
+        public int? SearchNumber { get; set; }
+        [BindProperty]
+        public string? SearchName { get; set; }
+        [BindProperty]
+        public string? SearchPhone { get; set; }
+
 
         public void OnGet()
         {
@@ -35,6 +40,12 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
         public IActionResult OnPost()
         {
             return RedirectToPage("NyKunde");
+        }
+
+        public IActionResult OnPostSearch()
+        {
+            Kunder = _repo.Search(SearchNumber, SearchName, SearchPhone);
+            return Page();
         }
     }
 }
