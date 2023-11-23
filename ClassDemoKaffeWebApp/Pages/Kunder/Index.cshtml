@@ -23,13 +23,15 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>Kunde Nummer</th>
-            <th>Navn</th>
+            <form method="post">
+            <th><input type="submit" asp-page-handler="SortNumber" value="Kunde Nummer" class="btn btn-outline-success" /></th>
+            <th><input type="submit" asp-page-handler="SortName" value="Navn" class="btn btn-outline-success" /></th>
             <th>Telefon</th>
             <th>Firma</th>
             <th>Ranking</th>
             <th></th>
             <th></th>
+            </form>
         </tr>
     </thead>
     <tbody>

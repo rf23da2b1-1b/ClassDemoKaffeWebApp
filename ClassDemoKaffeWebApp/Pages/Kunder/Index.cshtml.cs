@@ -47,5 +47,17 @@ namespace ClassDemoKaffeWebApp.Pages.Kunder
             Kunder = _repo.Search(SearchNumber, SearchName, SearchPhone);
             return Page();
         }
+
+        public IActionResult OnPostSortNumber()
+        {
+            Kunder = _repo.SortNumber();
+            return Page();
+        }
+
+        public IActionResult OnPostSortName()
+        {
+            Kunder = _repo.SortName();
+            return Page();
+        }
     }
 }

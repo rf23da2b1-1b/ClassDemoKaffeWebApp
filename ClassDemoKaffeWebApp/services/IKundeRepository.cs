@@ -15,5 +15,7 @@ namespace ClassDemoKaffeWebApp.services
 
 
         List<Kunde> Search(int? number, string? name, string? phone);
+        List<Kunde> SortNumber();
+        List<Kunde> SortName();
     }
 }

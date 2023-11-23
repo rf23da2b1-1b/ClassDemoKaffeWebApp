@@ -121,5 +121,15 @@ namespace ClassDemoKaffeWebApp.services
         {
             throw new NotImplementedException();
         }
+
+        public List<Kunde> SortNumber()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Kunde> SortName()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

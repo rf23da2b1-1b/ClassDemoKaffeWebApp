@@ -118,6 +118,76 @@ namespace ClassDemoKaffeWebApp.services
         }
 
 
+        private bool NumberASC = true;
+        public List<Kunde> SortNumber()
+        {
+            List<Kunde> retKunder = HentAlleKunder();
+
+            retKunder.Sort(new SortByNumber());
+
+            if (!NumberASC)
+            {
+                retKunder.Reverse();
+            }
+            NumberASC = !NumberASC;
+
+            return retKunder;
+        }
+
+        private class SortByNumber : IComparer<Kunde>
+        {
+            public int Compare(Kunde? x, Kunde? y)
+            {
+                if(x == null || y == null)
+                {
+                    return 0;
+                }
+
+                //if (x.KundeNummer > y.KundeNummer)
+                //{
+                //    return 1;
+                //}
+                //else
+                //{
+                //    return -1;
+                //}
+
+                return x.KundeNummer - y.KundeNummer;
+            }
+        }
+
+        private bool NameASC = true;
+        public List<Kunde> SortName()
+        {
+            List<Kunde> retKunder = HentAlleKunder();
+
+            //retKunder.Sort(new SortByName());
+
+            retKunder.Sort((x, y) => x.Navn.CompareTo(y.Navn));
+
+            if (!NameASC)
+            {
+                retKunder.Reverse();
+            }
+            NameASC = !NameASC;
+
+            return retKunder;
+        }
+
+        private class SortByName : IComparer<Kunde>
+        {
+            public int Compare(Kunde? x, Kunde? y)
+            {
+                if (x == null || y == null)
+                {
+                    return 0;
+                }
+
+                return x.Navn.CompareTo(y.Navn);
+            }
+        }
+
+
 
         public override string ToString()
         {
@@ -157,6 +227,6 @@ namespace ClassDemoKaffeWebApp.services
             fs.Close();
         }
 
-       
+        
     }
 }
